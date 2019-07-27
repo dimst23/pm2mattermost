@@ -1,4 +1,4 @@
-class AddMattermostEvents < ActiveRecord::Migration[5.2]
+class AddMattermostEvents < ActiveRecord::Migration[5.1]
   def change
     create_table :mattermost_events do |t|
       t.belongs_to :journal
