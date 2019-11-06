@@ -1,4 +1,4 @@
-class RemoveMattermostHookUrlFromProject < ActiveRecord::Migration[5.1]
+class RemoveMattermostHookUrlFromProject < ActiveRecord::Migration
   def up
     remove_column :projects, :mattermost_hook_url, :string
   end
