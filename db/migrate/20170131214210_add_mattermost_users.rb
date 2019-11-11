@@ -6,7 +6,7 @@ class AddMattermostUsers < ActiveRecord::Migration[5.1]
 
       t.timestamps null: false
 
-      t.index [:user_id], unique: true
+#      t.index [:user_id], unique: true
     end
   end
 end
