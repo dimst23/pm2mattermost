@@ -12,7 +12,7 @@ class SendMattermostMessageJob < ApplicationJob
     @work_package = @journal.journable
     @project = @journal.project
     @user = @journal.user
-	@current_user = @journal.user
+    @current_user = @journal.user
   end
 
   def perform
@@ -49,11 +49,11 @@ class SendMattermostMessageJob < ApplicationJob
     events_by_type.map do |type, data|
       case
       when type == :created
-		  "* :heavy_plus_sign: added a new task"
-	  when type == :deleted
-		  "* :x: removed task"
+          "* :heavy_plus_sign: added a new task"
+      when type == :deleted
+          "* :x: removed task"
       when type == :commented
-		  data[:note].map { |note| "* :speaking_head: commented: #{note}" }.join('\n')
+          data[:note].map { |note| "* :speaking_head: commented: #{note}" }.join('\n')
       else
         %w(status_id assigned_to_id priority_id due_date done_ratio).map do |key|
           next if data[key].blank? or data[key].first == data[key].last
@@ -100,7 +100,7 @@ class SendMattermostMessageJob < ApplicationJob
       next unless url.present?
       uri = URI.parse(url)
       req = Net::HTTP::Post.new(uri.request_uri)
-	  req.body = "payload=" + URI.escape({username: "PM (#{@project.name})", text: "#{message}"}.to_json)
+	  req.body = "payload=" + URI.escape({username: "PM (#{@project.name})", text: message}.to_json)
       res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.instance_of?(URI::HTTPS)) do |http|
         http.request(req)
       end
