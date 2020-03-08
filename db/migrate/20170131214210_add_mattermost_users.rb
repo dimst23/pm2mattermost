@@ -1,4 +1,4 @@
-class AddMattermostUsers < ActiveRecord::Migration[5.1]
+class AddMattermostUsers < ActiveRecord::Migration[4.2]
   def change
     create_table :mattermost_users do |t|
       t.belongs_to :user
